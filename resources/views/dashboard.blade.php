@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - SalahSambung</title>
+    <title>SalahSambung - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap"
         rel="stylesheet">
@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     screens: {
-                        'md': '1085px',
+                        'md': '555px',
                     },
                     fontFamily: {
                         'londrina': ['"Londrina Solid"', 'sans-serif'],
@@ -47,9 +47,9 @@
             </a>
 
             {{-- Right Links --}}
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4">
                 <a href="#"
-                    class="text-[#FFB200] text-lg md:text-xl font-normal border-b-2 border-[#FFB200] pb-1">Main</a>
+                    class="text-white/70 text-lg md:text-xl font-light hover:text-white transition-colors">Main</a>
                 <a href="#histori"
                     class="text-white/70 text-lg md:text-xl font-light hover:text-white transition-colors">Histori</a>
             </div>
@@ -59,8 +59,8 @@
     {{-- MAIN CONTENT --}}
     <main class="relative z-10 flex-1 w-full max-w-[1100px] mx-auto px-5 pt-12 flex flex-col items-center">
 
-        <h1 class="text-[50px] md:text-[65px] font-normal text-center mb-8 text-white leading-[1.1]">
-            Cari Tahu Siapa<br>Impostornya!
+        <h1 class="text-[50px] md:text-[65px] font-normal text-center mb-8 text-white leading-[0.9]">
+            Cari Tahu<br>Siapa<br>Impostornya!
         </h1>
 
         {{-- Action Buttons --}}
@@ -86,7 +86,7 @@
 
         {{-- HISTORY SECTION --}}
         <div id="histori"
-            class="w-full max-w-[700px] pt-24 px-6 md:px-12 pb-16 relative z-10 mt-auto mb-[-20px] bg-[url('/images/dashboard_mobile_illustration.png')] md:bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat min-h-[400px]">
+            class="w-full max-w-[700px] pt-25 px-6 md:px-12 pb-16 relative z-10 mt-auto mb-[-20px] bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat min-h-[400px]">
             <h2 class="text-[26px] text-white font-normal mb-8 text-center tracking-[0.5em] uppercase">
                 Histori
             </h2>
