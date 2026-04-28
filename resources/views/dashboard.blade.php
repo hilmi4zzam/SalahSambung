@@ -43,7 +43,7 @@
             {{-- Left Logo --}}
             <a href="/" class="flex items-center gap-3 no-underline">
                 <div class="w-[30px] h-[30px] rounded-full bg-[#D9D9D9]"></div>
-                <span class="font-normal text-[22px] md:text-[24px] text-white leading-none">SalahSambung</span>
+                <span class="font-light text-[22px] md:text-[24px] text-white leading-none">SalahSambung</span>
             </a>
 
             {{-- Right Links --}}
@@ -65,12 +65,12 @@
 
         {{-- Action Buttons --}}
         <div class="flex flex-col md:flex-row items-center gap-4 mb-8">
-            <a href="#"
-                class="bg-[#C7B09C] text-[#21201D] px-8 py-2.5 rounded-[18px] text-2xl font-normal hover:opacity-90 transition-opacity w-full md:w-auto text-center">
+            <a href="/setting"
+                class="bg-[#C7B09C] text-[#21201D] px-8 py-2.5 rounded-[18px] text-2xl font-light hover:opacity-90 transition-opacity w-full md:w-auto text-center">
                 Main Semeja
             </a>
             <a href="#"
-                class="border-[2px] border-[#FFB200] bg-[#150D05] text-white px-8 py-2.5 rounded-[18px] text-2xl font-normal flex items-center justify-center gap-2 hover:bg-[#FFB200]/10 transition-colors w-full md:w-auto">
+                class="border-[2px] border-[#FFB200] bg-[#150D05] text-white px-8 py-2.5 rounded-[18px] text-2xl font-light flex items-center justify-center gap-2 hover:bg-[#FFB200]/10 transition-colors w-full md:w-auto">
                 Main Online
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#EF4444" class="text-red-500">
                     <path
@@ -103,13 +103,13 @@
                                     <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
                                 </svg>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-normal tracking-wide">Villager</span>
+                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide">Villager</span>
                             </div>
                             {{-- Object --}}
                             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                                 <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-normal tracking-wide truncate">Tiang
+                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide truncate">Tiang
                                     Listrik</span>
                             </div>
                         </div>
@@ -139,13 +139,13 @@
                                     <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
                                 </svg>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-normal tracking-wide">Villager</span>
+                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide">Villager</span>
                             </div>
                             {{-- Object --}}
                             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                                 <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-normal tracking-wide truncate">Bianglala</span>
+                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide truncate">Bianglala</span>
                             </div>
                         </div>
                         {{-- Delete Button --}}
@@ -174,13 +174,13 @@
                                     <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
                                 </svg>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-normal tracking-wide">Impostor</span>
+                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide">Impostor</span>
                             </div>
                             {{-- Object --}}
                             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                                 <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-normal tracking-wide truncate">Helm</span>
+                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide truncate">Helm</span>
                             </div>
                         </div>
                         {{-- Delete Button --}}

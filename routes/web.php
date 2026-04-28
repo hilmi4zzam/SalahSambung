@@ -17,3 +17,7 @@ Route::get('/daftar', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/setting', function () {
+    return view('setting');
+});
