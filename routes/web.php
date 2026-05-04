@@ -21,3 +21,7 @@ Route::get('/dashboard', function () {
 Route::get('/setting', function () {
     return view('setting');
 });
+
+Route::get('/buka-peran', function () {
+    return view('buka-peran');
+});

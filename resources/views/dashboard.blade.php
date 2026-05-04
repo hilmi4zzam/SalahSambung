@@ -66,11 +66,11 @@
         {{-- Action Buttons --}}
         <div class="flex flex-col md:flex-row items-center gap-4 mb-8">
             <a href="/setting"
-                class="bg-[#C7B09C] text-[#21201D] px-8 py-2.5 rounded-[18px] text-2xl font-light hover:opacity-90 transition-opacity w-full md:w-auto text-center">
+                class="bg-[#C7B09C] text-[#21201D] px-8 py-2.5 rounded-[18px] text-[22px] font-light hover:opacity-90 transition-opacity w-full md:w-auto text-center">
                 Main Semeja
             </a>
             <a href="#"
-                class="border-[2px] border-[#FFB200] bg-[#150D05] text-white px-8 py-2.5 rounded-[18px] text-2xl font-light flex items-center justify-center gap-2 hover:bg-[#FFB200]/10 transition-colors w-full md:w-auto">
+                class="border-[2px] border-[#FFB200] bg-[#21140A] text-white px-8 py-2.5 rounded-[18px] text-[22px] font-light flex items-center justify-center gap-2 hover:bg-[#FFB200]/10 transition-colors w-full md:w-auto">
                 Main Online
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#EF4444" class="text-red-500">
                     <path
@@ -86,12 +86,9 @@
 
         {{-- HISTORY SECTION --}}
         <div id="histori"
-            class="w-full max-w-[700px] pt-25 px-6 md:px-12 pb-16 relative z-10 mt-auto mb-[-20px] bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat min-h-[400px]">
-            <h2 class="text-[26px] text-white font-normal mb-8 text-center tracking-[0.5em] uppercase">
-                Histori
-            </h2>
-
-            <div class="space-y-5 md:space-y-8">
+            class="w-full max-w-[700px] pt-25 px-6 md:px-12 pb-16 relative z-10 mt-auto mb-[-60px] bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat min-h-[530px]">
+            
+            <div class="space-y-5 md:space-y-8 mt-20">
                 {{-- History Item: Villager --}}
                 <div class="flex flex-col">
                     <div
@@ -103,13 +100,13 @@
                                     <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
                                 </svg>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide">Villager</span>
+                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide">Villager</span>
                             </div>
                             {{-- Object --}}
                             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                                 <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide truncate">Tiang
+                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">Tiang
                                     Listrik</span>
                             </div>
                         </div>
@@ -139,13 +136,13 @@
                                     <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
                                 </svg>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide">Villager</span>
+                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide">Villager</span>
                             </div>
                             {{-- Object --}}
                             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                                 <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide truncate">Bianglala</span>
+                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">Bianglala</span>
                             </div>
                         </div>
                         {{-- Delete Button --}}
@@ -174,13 +171,13 @@
                                     <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
                                 </svg>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide">Impostor</span>
+                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide">Impostor</span>
                             </div>
                             {{-- Object --}}
                             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                                 <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
                                 <span
-                                    class="text-white text-[16px] md:text-[22px] font-light tracking-wide truncate">Helm</span>
+                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">Helm</span>
                             </div>
                         </div>
                         {{-- Delete Button --}}

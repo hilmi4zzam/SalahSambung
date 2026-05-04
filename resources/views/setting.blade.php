@@ -10,7 +10,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    screens: { 'md': '800px', 'lg': '1024px' },
+                    screens: { 'md': '900px', 'lg': '900px' },
                     fontFamily: { 'londrina': ['"Londrina Solid"', 'sans-serif'] },
                     colors: {
                         'primary': '#FFB200',
@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body class="bg-bg-dark min-h-screen font-londrina text-white flex items-start md:items-center justify-center p-4 py-8 md:p-8 overflow-x-hidden relative">
+<body class="bg-[radial-gradient(circle_at_50%_50%,rgba(67,38,19,1)_0%,rgba(39,24,12,1)_100%)] min-h-screen font-londrina text-white flex items-start md:items-center justify-center p-4 py-8 md:p-8 overflow-x-hidden relative">
     
     {{-- Main Container --}}
     <div class="w-full max-w-[1000px] flex flex-col z-10">
@@ -45,7 +45,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="group-hover:-translate-x-1 transition-transform" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
-                <span class="text-[18px] md:text-[20px] font-light tracking-wide mt-1">Kembali</span>
+                <span class="text-[20px] md:text-[24px] font-light tracking-wide mt-1">Kembali</span>
             </a>
         </div>
 
@@ -91,9 +91,9 @@
                 </div>
 
                 {{-- Action Button --}}
-                <button class="bg-btn-bg text-[#21140A] rounded-[18px] py-3 md:py-4 px-6 text-[24px] md:text-[28px] font-light w-full hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer">
+                <a href="/buka-peran" class="block text-center bg-btn-bg text-[#21140A] rounded-[18px] py-3 md:py-4 px-6 text-[20px] md:text-[24px] font-light w-full hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer">
                     Lanjutkan Permainan
-                </button>
+                </a>
                 
             </div>
         </div>
