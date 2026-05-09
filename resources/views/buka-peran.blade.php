@@ -34,7 +34,7 @@
                 <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-x-1 transition-transform" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
-                <span class="text-[20px] md:text-[24px] font-light tracking-wide mt-1">Kembali</span>
+                <span class="text-[20px] md:text-[24px] font-light tracking-wide mt-1">Hambali</span>
             </a>
         </div>
 
@@ -49,7 +49,7 @@
                     <img src="/images/villagerimpostorlpmobile.png" alt="Cards" class="w-[60%] md:w-[65%] lg:w-[70%] h-auto object-contain">
                 </div>
 
-                <button class="bg-btn-bg text-bg-dark rounded-[16px] md:rounded-[18px] lg:rounded-[20px] py-2 md:py-2.5 lg:py-3 px-6 md:px-6 text-[20px] md:text-[24px] font-light w-[80%] hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 sm:mb-4 md:mb-3 lg:mb-4">
+                <button onclick="document.getElementById('role-popup').classList.remove('translate-y-full')" class="bg-btn-bg text-bg-dark rounded-[16px] md:rounded-[18px] lg:rounded-[20px] py-2 md:py-2.5 lg:py-3 px-6 md:px-6 text-[20px] md:text-[24px] font-light w-[80%] hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 sm:mb-4 md:mb-3 lg:mb-4">
                     Buka Peranmu
                 </button>
             </div>
@@ -90,6 +90,26 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    {{-- Popup Role --}}
+    <div id="role-popup" class="fixed bottom-0 left-0 w-full z-50 transform translate-y-full transition-transform duration-300 ease-in-out flex justify-center">
+        <div class="bg-[#C7B09C] w-full max-w-[1000px] rounded-t-[30px] md:rounded-t-[40px] px-8 py-6 md:px-12 md:py-8 flex flex-col sm:flex-row items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+            
+            {{-- Left Side --}}
+            <div class="flex flex-col items-center sm:items-start text-bg-dark mb-4 sm:mb-0">
+                <h1 class="text-[40px] md:text-[56px] lg:text-[70px] font-black leading-none uppercase tracking-wide">KAMU IMPOSTOR</h1>
+                <p class="text-[20px] md:text-[24px] font-medium tracking-wide mt-1">clue : berkaki 4</p>
+            </div>
+
+            {{-- Right Side --}}
+            <div class="flex flex-col items-center sm:items-end">
+                <p class="text-bg-dark text-[16px] md:text-[18px] mb-2 font-medium">putar device ke pemain selanjutnya</p>
+                <button onclick="document.getElementById('role-popup').classList.add('translate-y-full')" class="bg-white text-bg-dark rounded-full py-2 px-12 md:py-3 md:px-16 text-[20px] md:text-[24px] font-bold hover:bg-gray-100 transition-colors w-full sm:w-auto shadow-md">
+                    Lanjut
+                </button>
             </div>
         </div>
     </div>
