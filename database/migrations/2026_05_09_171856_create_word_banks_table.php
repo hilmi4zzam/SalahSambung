@@ -9,13 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('word_banks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+public function up(): void
+{
+    Schema::create('word_banks', function (Blueprint $table) {
+        $table->id();
+        
+        // Kata asli yang dikasih ke pemain biasa (villager)
+        $table->string('kata_villager');  
+        
+        // Kata clue yang didapat dari kata villager
+        $table->string('clue_impostor');  
+        
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
