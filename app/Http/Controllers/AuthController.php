@@ -1,92 +1,71 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; // Alamat lantai si Controller
 
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User; // Akses ke brankas User
-use Illuminate\Support\Facades\Hash; // Alat buat enkripsi/ngacak password
-use Illuminate\Support\Facades\Auth; // Alat buat sistem Login & Logout
+use App\Models\User; // Manggil si Resepsionis (Model) dari lantai sebelah
+use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // ==========================================
-    // 1. FITUR REGISTER (Daftar Akun)
-    // ==========================================
+    // 1. Fungsi buat daftar akun manual (Tes Kabel Database)
     public function register(Request $request)
     {
-        // Interogasi data (Validasi)
+        // Validasi: pastiin semua kolom diisi dan email belum pernah kedaftar
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8'
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
         ]);
 
-        // Simpan ke brankas MySQL
+        // Proses input ke database
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), //password di hash
+            'password' => Hash::make($request->password), 
         ]);
 
-        // Langsung auto-login biar user gak repot
+        // Login otomatis setelah register
         Auth::login($user);
 
-        // Arahin ke halaman dalem game (misal: /dashboard)
-        return redirect('/dashboard'); 
+        // Langsung arahkan ke dashboard
+        return redirect('/dashboard');
     }
 
-    // ==========================================
-    // 2. FITUR LOGIN (Masuk Game)
-    // ==========================================
+    // 2. Fungsi buat login manual
     public function login(Request $request)
     {
-        // Validasi inputan form
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
-        // Cocokin KTP sama database
-        $credentials = $request->only('email', 'password');
-        
         if (Auth::attempt($credentials)) {
-            // Kalau password bener, kasih izin masuk
-            $request->session()->regenerate(); 
-            return redirect()->intended('/dashboard'); 
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
         }
 
-        // Kalau password/email salah, tendang balik ke form bawa pesan error
-        return back()->withErrors([
-            'email' => 'Email atau Password yang kamu massukkan salah',
-        ])->onlyInput('email');
+        return back()->withErrors(['email' => 'Email atau password salah!']);
     }
 
-    // Fungsi buat lempar user ke halaman milih akun Google
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    // Fungsi buat nangkep datanya (Kosongin dulu aja, kita fokus nampilin UI Google-nya dulu)
-    public function handleGoogleCallback()
-    {
-        // Nanti logic ngecek database dan auto-login taruh sini
-        return redirect('/dashboard'); 
-    }
-
-    // ==========================================
-    // 3. FITUR LOGOUT (Keluar Game)
-    // ==========================================
+    // 3. Fungsi buat logout dan hapus data user
     public function logout(Request $request)
     {
-        Auth::logout(); // Cabut aksesnya
+        // Ambil data user yang sedang login saat ini
+        $user = Auth::user();
+
+        // Lakukan proses logout
+        Auth::logout();
         
-        // Bersihin jejaknya (Session)
+        // Hapus data user dari database (MySQL)
+        if ($user) {
+            $user->delete();
+        }
+        
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        // Balikin ke halaman depan
-        return redirect('/masuk');
+        
+        return redirect('/');
     }
 }

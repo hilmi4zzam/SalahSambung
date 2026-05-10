@@ -31,7 +31,8 @@
             <h1 class="text-4xl font-normal text-center text-white">Daftar Akun</h1>
         </div>
 
-        <form action="#" method="POST" class="space-y-4">
+        <form action="{{ route('register.submit') }}" method="POST" class="space-y-4">
+            @csrf
             <div>
                 <label for="name" class="block text-lg font-light text-white/80 mb-1">Nama</label>
                 <input type="text" id="name" name="name" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Masukkan nama kamu">
@@ -46,6 +47,14 @@
                 <label for="password" class="block text-lg font-light text-white/80 mb-1">Password</label>
                 <input type="password" id="password" name="password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Buat password">
             </div>
+
+            @if($errors->any())
+                <div class="text-red-500 text-md font-light text-center mt-2">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
 
             <div class="pt-2">
                 <button type="submit" class="w-full bg-[#C7B09C] hover:bg-[#d4bfad] text-[#21201D] text-xl font-light py-3.5 rounded-xl transition-colors">

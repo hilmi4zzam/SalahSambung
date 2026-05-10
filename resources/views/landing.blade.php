@@ -53,8 +53,12 @@
         </a>
         {{-- Nav links right --}}
         <div class="ml-auto flex items-center gap-6">
-          <a href="/masuk" class="font-light text-[22px] text-white no-underline hover:opacity-70 transition-opacity">Masuk</a>
-          <a href="/daftar" class="border border-[#FFB200] rounded-full text-[22px] text-white py-1 px-5 no-underline font-light hover:bg-[#FFB200]/10 transition-colors">Daftar</a>
+          @auth
+            <a href="/dashboard" class="border border-[#FFB200] rounded-[18px] text-[22px] text-white py-1 px-6 no-underline font-light hover:bg-[#FFB200]/10 transition-colors">Ke Dashboard</a>
+          @else
+            <a href="/masuk" class="font-light text-[22px] text-white no-underline hover:opacity-70 transition-opacity">Masuk</a>
+            <a href="/daftar" class="border border-[#FFB200] rounded-full text-[22px] text-white py-1 px-5 no-underline font-light hover:bg-[#FFB200]/10 transition-colors">Daftar</a>
+          @endauth
         </div>
       </div>
     </nav>
@@ -67,8 +71,12 @@
           <span class="font-light text-[20px] text-white">SalahSambung</span>
         </a>
         <div class="ml-auto flex items-center gap-3">
-          <a href="/masuk" class="font-light text-[18px] text-white no-underline">Masuk</a>
-          <a href="/daftar" class="font-light text-[18px] text-white no-underline border border-[#FFB200] rounded-full py-1 px-3">Daftar</a>
+          @auth
+            <a href="/dashboard" class="font-light text-[18px] text-white no-underline border border-[#FFB200] rounded-full py-1 px-3">Ke Dashboard</a>
+          @else
+            <a href="/masuk" class="font-light text-[18px] text-white no-underline">Masuk</a>
+            <a href="/daftar" class="font-light text-[18px] text-white no-underline border border-[#FFB200] rounded-full py-1 px-3">Daftar</a>
+          @endauth
         </div>
       </div>
     </nav>
@@ -79,7 +87,7 @@
         <h1 class="font-normal text-[85px] leading-[0.9] text-white mb-10 tracking-wide">
           Tongkrongan<br>kamu bosenin?<br>berati belum<br>pernah main ini!
         </h1>
-        <a href="/masuk" class="bg-[#C7B09C] text-[#21201D] font-light text-[22px] rounded-xl py-3.5 px-8 inline-flex no-underline hover:bg-[#d4bfad] transition-colors">Main Sekarang</a>
+        <a href="{{ auth()->check() ? '/dashboard' : '/masuk' }}" class="bg-[#C7B09C] text-[#21201D] font-light text-[22px] rounded-xl py-3.5 px-8 inline-flex no-underline hover:bg-[#d4bfad] transition-colors">Main Sekarang</a>
       </div>
       {{-- Character Illustration Right --}}
       <div class="animate-float shrink-0 w-[420px] flex items-center justify-center">
@@ -97,7 +105,7 @@
         <img src="/images/villagerimpostorlpmobile.png" onerror="this.src='https://placehold.co/300x400/5B4000/FFF?text=Hero+Image'" alt="SalahSambung Cards" class="w-full object-contain">
       </div>
       <div class="flex justify-center pb-10">
-        <a href="/masuk" class="bg-[#C7B09C] text-[#21201D] text-[20px] py-3.5 px-10 rounded-xl font-light no-underline">Main Sekarang</a>
+        <a href="{{ auth()->check() ? '/dashboard' : '/masuk' }}" class="bg-[#C7B09C] text-[#21201D] text-[20px] py-3.5 px-10 rounded-xl font-light no-underline">Main Sekarang</a>
       </div>
     </div>
   </div>

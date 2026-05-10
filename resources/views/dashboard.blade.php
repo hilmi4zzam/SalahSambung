@@ -37,7 +37,7 @@
     </div>
 
     {{-- NAVBAR --}}
-    <nav class="relative z-10 w-full px-5 pt-8 pb-4 flex justify-center">
+    <nav class="relative z-[100] w-full px-5 pt-8 pb-4 flex justify-center">
         <div
             class="w-full max-w-[800px] bg-white/10 backdrop-blur-md rounded-full h-[55px] flex items-center px-6 justify-between border border-white/5 shadow-lg">
             {{-- Left Logo --}}
@@ -49,9 +49,30 @@
             {{-- Right Links --}}
             <div class="flex items-center gap-4">
                 <a href="#histori"
-                    class="font-light text-[22px] text-white no-underline hover:opacity-70 transition-opacity">Histori</a>
-                <a href="#"
-                    class="border border-[#FFB200] rounded-full text-[22px] text-white py-1 px-5 no-underline font-light hover:bg-[#FFB200]/10 transition-colors">Keluar</a>
+                    class="font-light text-[22px] text-white no-underline hover:opacity-70 transition-opacity mr-2">Histori</a>
+                
+                <div class="relative inline-block text-left">
+                    <button type="button" onclick="document.getElementById('profileDropdown').classList.toggle('hidden')"
+                        class="w-[38px] h-[38px] bg-[#D9D9D9] hover:bg-[#c4c4c4] rounded-full flex items-center justify-center text-[#150D05] text-[22px] font-bold transition-colors shadow-sm focus:outline-none">
+                        {{ auth()->check() ? strtoupper(substr(auth()->user()->name, 0, 1)) : 'U' }}
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div id="profileDropdown" class="hidden absolute right-0 z-50 mt-3 w-56 origin-top-right rounded-[20px] bg-[#2A1C12] border border-white/10 shadow-xl focus:outline-none overflow-hidden">
+                        <div class="p-4 border-b border-white/10">
+                            <p class="text-[22px] text-white truncate leading-tight">{{ auth()->user()?->name ?? 'Pengguna' }}</p>
+                            <p class="text-[16px] text-white/50 font-light truncate">{{ auth()->user()?->email ?? 'email@kosong.com' }}</p>
+                        </div>
+                        <div class="p-2">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="w-full text-left px-4 py-2 text-[20px] text-[#FF4444] hover:bg-white/5 rounded-xl transition-colors">
+                                    Keluar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
