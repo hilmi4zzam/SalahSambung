@@ -72,7 +72,7 @@ class AuthController extends Controller
     public function handleGoogleCallback()
     {
         // Nanti logic ngecek database dan auto-login taruh sini
-        return "Berhasil balik dari Google!"; 
+        return redirect('/dashboard'); 
     }
 
     // ==========================================
