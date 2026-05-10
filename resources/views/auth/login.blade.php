@@ -31,16 +31,23 @@
             <h1 class="text-4xl font-normal text-center text-white">Masuk</h1>
         </div>
 
-        <form action="#" method="POST" class="space-y-4">
+        <form action="{{ route('login.submit') }}" method="POST" class="space-y-4">
+            @csrf
             <div>
                 <label for="email" class="block text-lg font-light text-white/80 mb-1">Email</label>
-                <input type="email" id="email" name="email" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Masukkan email kamu">
+                <input type="email" id="email" name="email" value="{{ old('email') }}" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Masukkan email kamu">
             </div>
             
             <div>
                 <label for="password" class="block text-lg font-light text-white/80 mb-1">Password</label>
                 <input type="password" id="password" name="password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Masukkan password">
             </div>
+
+            @error('email')
+                <div class="text-red-500 text-md font-light text-center">
+                    {{ $message }}
+                </div>
+            @enderror
 
             <div class="pt-2">
                 <button type="submit" class="w-full bg-[#C7B09C] hover:bg-[#d4bfad] text-[#21201D] text-xl font-light py-3.5 rounded-xl transition-colors">
@@ -66,10 +73,6 @@
                 Masuk dengan Google
             </button>
             
-            {{-- Tombol antisipasi sementara --}}
-            <a href="/dashboard" class="w-full block text-center border border-[#FFB200] text-[#FFB200] hover:bg-[#FFB200]/10 text-lg font-light py-3 rounded-xl transition-colors">
-                Lanjut ke Dashboard (Preview)
-            </a>
         </div>
 
         <p class="text-center mt-8 text-white/70 font-light text-lg">

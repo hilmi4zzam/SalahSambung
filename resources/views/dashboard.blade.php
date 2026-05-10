@@ -48,10 +48,10 @@
 
             {{-- Right Links --}}
             <div class="flex items-center gap-4">
-                <a href="#"
-                    class="text-white/70 text-lg md:text-xl font-light hover:text-white transition-colors">Main</a>
                 <a href="#histori"
-                    class="text-white/70 text-lg md:text-xl font-light hover:text-white transition-colors">Histori</a>
+                    class="font-light text-[22px] text-white no-underline hover:opacity-70 transition-opacity">Histori</a>
+                <a href="#"
+                    class="border border-[#FFB200] rounded-full text-[22px] text-white py-1 px-5 no-underline font-light hover:bg-[#FFB200]/10 transition-colors">Keluar</a>
             </div>
         </div>
     </nav>
