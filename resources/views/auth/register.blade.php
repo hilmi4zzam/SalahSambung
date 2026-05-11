@@ -46,6 +46,7 @@
             <div>
                 <label for="password" class="block text-lg font-light text-white/80 mb-1">Password</label>
                 <input type="password" id="password" name="password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Buat password">
+                <label for="password" class="block text-sm font-light text-white/80 mt-2 ml-4">minimal 6 huruf atau angka</label>
             </div>
 
             @if($errors->any())

@@ -43,11 +43,13 @@
                 <input type="password" id="password" name="password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Masukkan password">
             </div>
 
-            @error('email')
-                <div class="text-red-500 text-md font-light text-center">
-                    {{ $message }}
+            @if($errors->any())
+                <div class="text-red-500 text-md font-light text-center mt-2">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
                 </div>
-            @enderror
+            @endif
 
             <div class="pt-2">
                 <button type="submit" class="w-full bg-[#C7B09C] hover:bg-[#d4bfad] text-[#21201D] text-xl font-light py-3.5 rounded-xl transition-colors">

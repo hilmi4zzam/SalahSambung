@@ -14,10 +14,8 @@ public function up(): void
     Schema::create('word_banks', function (Blueprint $table) {
         $table->id();
         
-        // Kata asli yang dikasih ke pemain biasa (villager)
+        // Kata villager dan clue impostor
         $table->string('kata_villager');  
-        
-        // Kata clue yang didapat dari kata villager
         $table->string('clue_impostor');  
         
         $table->timestamps();

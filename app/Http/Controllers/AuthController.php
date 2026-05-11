@@ -17,13 +17,19 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+        ], [
+            'name.required' => 'Nama wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.unique' => 'Akun tersebut telah terdaftar, silahkan login',
+            'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 6 huruf atau angka',
         ]);
 
         // Proses input ke database
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), 
+            'password' => Hash::make($request->password),
         ]);
 
         // Login otomatis setelah register
@@ -39,6 +45,9 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ], [
+            'email.required' => 'Email wajib diisi',
+            'password.required' => 'Password wajib diisi', 
         ]);
 
         if (Auth::attempt($credentials)) {
