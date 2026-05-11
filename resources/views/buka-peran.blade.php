@@ -34,7 +34,7 @@
                 <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-x-1 transition-transform" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
-                <span class="text-[20px] md:text-[24px] font-light tracking-wide mt-1">Hambali</span>
+                <span class="text-[20px] md:text-[24px] font-light tracking-wide mt-1">Kembali</span>
             </a>
         </div>
 
