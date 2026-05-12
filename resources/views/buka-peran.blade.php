@@ -59,7 +59,7 @@
                 
                 {{-- Step 1 --}}
                 <div class="flex items-center justify-between gap-2 md:gap-6">
-                    <div class="flex items-start gap-1 md:gap-0 text-[20px] md:text-[24px] font-light leading-[1.15] w-[55%]">
+                    <div class="flex items-start gap-1 md:gap-2 text-[20px] md:text-[24px] font-light leading-[1.15] w-[55%]">
                         <span>1.</span>
                         <p>Tentukan<br>pemain pertama<br>dengan<br>Hompimpa!</p>
                     </div>

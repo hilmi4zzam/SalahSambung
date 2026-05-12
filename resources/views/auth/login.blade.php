@@ -43,7 +43,7 @@
                 <input type="password" id="password" name="password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FFB200] transition-colors" placeholder="Masukkan password">
             </div>
 
-            @if($errors->any())
+            @if($errors->any()) 
                 <div class="text-red-500 text-md font-light text-center mt-2">
                     @foreach ($errors->all() as $error)
                         <p>{{ $error }}</p>
