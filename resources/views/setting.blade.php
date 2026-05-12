@@ -69,10 +69,14 @@
             <div class="flex flex-col gap-5 md:gap-0 justify-between w-full md:w-[55%] lg:w-[45%]">
                 
                 {{-- Player Input Box --}}
-                <div class="border-[3px] border-primary rounded-[24px] bg-bg-dark/50 px-8 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(255,178,0,0.15)] backdrop-blur-sm">
+                <div class="border-[3px] border-primary rounded-[24px] bg-bg-dark/50 px-6 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(255,178,0,0.15)] backdrop-blur-sm">
                     <div class="flex flex-col">
                         <label for="jumlah-pemain" class="text-[20px] md:text-[24px] font-light tracking-wide text-white mb-1">Jumlah Pemain :</label>
-                        <input type="number" id="jumlah-pemain" value="4" min="1" max="99" class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-white w-[100px] p-0 h-[70px] md:h-[90px] leading-none" />
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="updateValue('jumlah-pemain', -1, 3)" class="w-8 h-8 md:w-10 md:h-10 bg-primary/10 text-primary border-2 border-primary rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-primary hover:text-bg-dark transition cursor-pointer mb-2">-</button>
+                            <input type="number" id="jumlah-pemain" value="4" min="3" max="50" readonly class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-center text-white w-[70px] md:w-[90px] p-0 h-[70px] md:h-[90px] leading-none pointer-events-none" />
+                            <button type="button" onclick="updateValue('jumlah-pemain', 1, 3)" class="w-8 h-8 md:w-10 md:h-10 bg-primary/10 text-primary border-2 border-primary rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-primary hover:text-bg-dark transition cursor-pointer mb-2">+</button>
+                        </div>
                     </div>
                     <div class="w-[70px] h-[70px] md:w-[100px] md:h-[100px] shrink-0 mr-2 md:mr-4">
                         <img src="/images/setting/worker-icon.svg" alt="Worker Icon" class="w-full h-full object-contain">
@@ -80,10 +84,14 @@
                 </div>
                 
                 {{-- Impostor Input Box --}}
-                <div class="border-[3px] border-danger rounded-[24px] bg-bg-dark/50 px-8 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(229,33,33,0.15)] backdrop-blur-sm">
+                <div class="border-[3px] border-danger rounded-[24px] bg-bg-dark/50 px-6 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(229,33,33,0.15)] backdrop-blur-sm">
                     <div class="flex flex-col">
                         <label for="jumlah-impostor" class="text-[20px] md:text-[24px] font-light tracking-wide text-white mb-1">Jumlah Impostor :</label>
-                        <input type="number" id="jumlah-impostor" value="1" min="1" max="99" class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-white w-[100px] p-0 h-[70px] md:h-[90px] leading-none" />
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="updateValue('jumlah-impostor', -1, 1)" class="w-8 h-8 md:w-10 md:h-10 bg-danger/10 text-danger border-2 border-danger rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-danger hover:text-bg-dark transition cursor-pointer mb-2">-</button>
+                            <input type="number" id="jumlah-impostor" value="1" min="1" max="20" readonly class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-center text-white w-[70px] md:w-[90px] p-0 h-[70px] md:h-[90px] leading-none pointer-events-none" />
+                            <button type="button" onclick="updateValue('jumlah-impostor', 1, 1)" class="w-8 h-8 md:w-10 md:h-10 bg-danger/10 text-danger border-2 border-danger rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-danger hover:text-bg-dark transition cursor-pointer mb-2">+</button>
+                        </div>
                     </div>
                     <div class="w-[70px] h-[70px] md:w-[100px] md:h-[100px] shrink-0 mr-2 md:mr-4">
                         <img src="/images/setting/spy-icon.svg" alt="Spy Icon" class="w-full h-full object-contain">
@@ -91,12 +99,42 @@
                 </div>
 
                 {{-- Action Button --}}
-                <a href="/buka-peran" class="block text-center bg-btn-bg text-[#21140A] rounded-[18px] py-3 md:py-4 px-6 text-[20px] md:text-[24px] font-light w-full hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer">
+                <a href="/buka-peran" class="block text-center bg-btn-bg text-[#21140A] rounded-[18px] py-3 md:py-4 px-6 text-[20px] md:text-[24px] font-light w-full hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mt-4">
                     Lanjutkan Permainan
                 </a>
                 
             </div>
         </div>
     </div>
+    <script>
+        function updateValue(id, change, min) {
+            const input = document.getElementById(id);
+            let val = parseInt(input.value) || min;
+            val += change;
+            
+            if (val < min) {
+                val = min;
+            }
+            
+            // Aturan opsional: Impostor harus lebih sedikit dari pemain.
+            if (id === 'jumlah-impostor') {
+                const jmlPemain = parseInt(document.getElementById('jumlah-pemain').value) || 3;
+                if (val >= jmlPemain) {
+                    val = jmlPemain - 1;
+                }
+            }
+            
+            input.value = val;
+            
+            // Jika pemain berkurang dan jumlah impostor sekarang >= pemain, turunkan impostor
+            if (id === 'jumlah-pemain') {
+                const impostorInput = document.getElementById('jumlah-impostor');
+                let jmlImpostor = parseInt(impostorInput.value) || 1;
+                if (jmlImpostor >= val) {
+                    impostorInput.value = val - 1;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
