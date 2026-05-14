@@ -25,6 +25,17 @@
 </head>
 <body class="bg-bg-dark min-h-screen font-londrina text-white flex items-start md:items-center justify-center p-5 md:p-8 overflow-x-hidden relative">
     
+    @php
+        $pemainCount = (int) ($jumlah_pemain ?? 3);
+        $impostorCount = (int) ($jumlah_impostor ?? 1);
+        
+        $roles = array_fill(0, $pemainCount, 'VILLAGER');
+        for ($i = 0; $i < $impostorCount; $i++) {
+            $roles[$i] = 'IMPOSTOR';
+        }
+        shuffle($roles);
+    @endphp
+    
     {{-- Main Container --}}
     <div class="w-full max-w-[900px] lg:max-w-[1000px] flex flex-col z-10">
         
@@ -43,13 +54,13 @@
             
             {{-- Left Column (Card) --}}
             <div class="w-[300px] md:w-[320px] lg:w-[380px] bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] p-4 sm:p-6 md:p-5 lg:p-6 flex flex-col items-center justify-between h-[380px] sm:h-[420px] md:h-[440px] lg:h-[480px] shrink-0">
-                <h2 class="text-[22px] md:text-[26px] font-normal tracking-wide text-white mt-4">PEMAIN 1</h2>
+                <h2 id="player-title" class="text-[22px] md:text-[26px] font-normal tracking-wide text-white mt-4">PEMAIN 1</h2>
                 
                 <div class="flex-1 w-full flex items-center justify-center py-2 md:py-3 lg:py-4">
                     <img src="/images/villagerimpostorlpmobile.png" alt="Cards" class="w-[60%] md:w-[65%] lg:w-[70%] h-auto object-contain">
                 </div>
 
-                <button onclick="document.getElementById('role-popup').classList.remove('translate-y-full')" class="bg-btn-bg text-bg-dark rounded-[16px] md:rounded-[18px] lg:rounded-[20px] py-2 md:py-2.5 lg:py-3 px-6 md:px-6 text-[20px] md:text-[24px] font-light w-[80%] hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 sm:mb-4 md:mb-3 lg:mb-4">
+                <button id="btn-buka" onclick="openRole()" class="bg-btn-bg text-bg-dark rounded-[16px] md:rounded-[18px] lg:rounded-[20px] py-2 md:py-2.5 lg:py-3 px-6 md:px-6 text-[20px] md:text-[24px] font-light w-[80%] hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 sm:mb-4 md:mb-3 lg:mb-4">
                     Buka Peranmu
                 </button>
             </div>
@@ -100,18 +111,64 @@
             
             {{-- Left Side --}}
             <div class="flex flex-col items-center sm:items-start text-bg-dark mb-4 sm:mb-0">
-                <h1 class="text-[40px] md:text-[56px] lg:text-[70px] font-black leading-none uppercase tracking-wide">KAMU IMPOSTOR</h1>
-                <p class="text-[20px] md:text-[24px] font-medium tracking-wide mt-1">clue : berkaki 4</p>
+                <h1 id="popup-role-title" class="text-[40px] md:text-[56px] lg:text-[70px] font-black leading-none uppercase tracking-wide">KAMU IMPOSTOR</h1>
+                <p id="popup-role-clue" class="text-[20px] md:text-[24px] font-medium tracking-wide mt-1">clue : berkaki 4</p>
             </div>
 
             {{-- Right Side --}}
             <div class="flex flex-col items-center sm:items-end">
-                <p class="text-bg-dark text-[16px] md:text-[18px] mb-2 font-medium">putar device ke pemain selanjutnya</p>
-                <button onclick="document.getElementById('role-popup').classList.add('translate-y-full')" class="bg-white text-bg-dark rounded-full py-2 px-12 md:py-3 md:px-16 text-[20px] md:text-[24px] font-bold hover:bg-gray-100 transition-colors w-full sm:w-auto shadow-md">
+                <p id="popup-instruction" class="text-bg-dark text-[16px] md:text-[18px] mb-2 font-medium">putar device ke pemain selanjutnya</p>
+                <button id="btn-lanjut" onclick="nextPlayer()" class="bg-white text-bg-dark rounded-full py-2 px-12 md:py-3 md:px-16 text-[20px] md:text-[24px] font-bold hover:bg-gray-100 transition-colors w-full sm:w-auto shadow-md">
                     Lanjut
                 </button>
             </div>
         </div>
     </div>
+
+    <script>
+        const roles = @json($roles);
+        const wordVillager = @json($wordBank ? $wordBank->kata_villager : 'Kambing');
+        const wordImpostor = @json($wordBank ? $wordBank->clue_impostor : 'Berkaki 4');
+        const totalPlayers = {{ $pemainCount }};
+        let currentPlayer = 1;
+
+        function openRole() {
+            const role = roles[currentPlayer - 1];
+            document.getElementById('popup-role-title').innerText = 'KAMU ' + role;
+            
+            // Tampilkan kata / clue dari WordBank
+            const word = role === 'IMPOSTOR' ? 'Clue : ' + wordImpostor : 'Kata : ' + wordVillager;
+            document.getElementById('popup-role-clue').innerText = word;
+            
+            // Ganti warna tulisan tergantung peran utk visual yang lebih baik (opsional)
+            if(role === 'IMPOSTOR') {
+                document.getElementById('popup-role-title').classList.replace('text-bg-dark', 'text-danger');
+            } else {
+                document.getElementById('popup-role-title').classList.replace('text-danger', 'text-bg-dark');
+            }
+
+            if (currentPlayer === totalPlayers) {
+                document.getElementById('popup-instruction').innerText = 'Semua pemain sudah melihat peran, mulai untuk bermain!';
+                document.getElementById('btn-lanjut').innerText = 'Mulai Bermain';
+            } else {
+                document.getElementById('popup-instruction').innerText = 'Putar device ke pemain selanjutnya';
+                document.getElementById('btn-lanjut').innerText = 'Lanjut';
+            }
+            
+            document.getElementById('role-popup').classList.remove('translate-y-full');
+        }
+
+        function nextPlayer() {
+            document.getElementById('role-popup').classList.add('translate-y-full');
+            
+            if (currentPlayer < totalPlayers) {
+                currentPlayer++;
+                document.getElementById('player-title').innerText = 'PEMAIN ' + currentPlayer;
+            } else {
+                // Semua pemain sudah melihat peran, arahkan ke game (dashboard/dll)
+                window.location.href = '/dashboard';
+            }
+        }
+    </script>
 </body>
 </html>

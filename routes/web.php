@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Models\WordBank;
 
 Route::get('/', function () {
     return view('landing');
@@ -15,8 +16,14 @@ Route::get('/setting', function () {
     return view('setting');
 });
 
-Route::get('/buka-peran', function () {
-    return view('buka-peran');
+Route::get('/buka-peran', function (\Illuminate\Http\Request $request) {
+    $wordBank = WordBank::inRandomOrder()->first();
+
+    return view('buka-peran', [
+        'jumlah_pemain' => $request->query('jumlah_pemain', 3),
+        'jumlah_impostor' => $request->query('jumlah_impostor', 1),
+        'wordBank' => $wordBank
+    ]);
 });
 
 

@@ -66,7 +66,7 @@
             </div>
 
             {{-- Right Column --}}
-            <div class="flex flex-col gap-5 md:gap-0 justify-between w-full md:w-[55%] lg:w-[45%]">
+            <form action="/buka-peran" method="GET" class="flex flex-col gap-5 md:gap-0 justify-between w-full md:w-[55%] lg:w-[45%]">
                 
                 {{-- Player Input Box --}}
                 <div class="border-[3px] border-primary rounded-[24px] bg-bg-dark/50 px-6 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(255,178,0,0.15)] backdrop-blur-sm">
@@ -74,7 +74,7 @@
                         <label for="jumlah-pemain" class="text-[20px] md:text-[24px] font-light tracking-wide text-white mb-1">Jumlah Pemain :</label>
                         <div class="flex items-center gap-2">
                             <button type="button" onclick="updateValue('jumlah-pemain', -1, 3)" class="w-8 h-8 md:w-10 md:h-10 bg-primary/10 text-primary border-2 border-primary rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-primary hover:text-bg-dark transition cursor-pointer mb-2">-</button>
-                            <input type="number" id="jumlah-pemain" value="4" min="3" max="50" readonly class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-center text-white w-[70px] md:w-[90px] p-0 h-[70px] md:h-[90px] leading-none pointer-events-none" />
+                            <input type="number" id="jumlah-pemain" name="jumlah_pemain" value="3" min="3" max="50" readonly class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-center text-white w-[70px] md:w-[90px] p-0 h-[70px] md:h-[90px] leading-none pointer-events-none" />
                             <button type="button" onclick="updateValue('jumlah-pemain', 1, 3)" class="w-8 h-8 md:w-10 md:h-10 bg-primary/10 text-primary border-2 border-primary rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-primary hover:text-bg-dark transition cursor-pointer mb-2">+</button>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                         <label for="jumlah-impostor" class="text-[20px] md:text-[24px] font-light tracking-wide text-white mb-1">Jumlah Impostor :</label>
                         <div class="flex items-center gap-2">
                             <button type="button" onclick="updateValue('jumlah-impostor', -1, 1)" class="w-8 h-8 md:w-10 md:h-10 bg-danger/10 text-danger border-2 border-danger rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-danger hover:text-bg-dark transition cursor-pointer mb-2">-</button>
-                            <input type="number" id="jumlah-impostor" value="1" min="1" max="20" readonly class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-center text-white w-[70px] md:w-[90px] p-0 h-[70px] md:h-[90px] leading-none pointer-events-none" />
+                            <input type="number" id="jumlah-impostor" name="jumlah_impostor" value="1" min="1" max="20" readonly class="no-spinners bg-transparent border-none outline-none text-[60px] md:text-[80px] font-normal text-center text-white w-[70px] md:w-[90px] p-0 h-[70px] md:h-[90px] leading-none pointer-events-none" />
                             <button type="button" onclick="updateValue('jumlah-impostor', 1, 1)" class="w-8 h-8 md:w-10 md:h-10 bg-danger/10 text-danger border-2 border-danger rounded-xl flex items-center justify-center text-3xl font-bold hover:bg-danger hover:text-bg-dark transition cursor-pointer mb-2">+</button>
                         </div>
                     </div>
@@ -99,11 +99,11 @@
                 </div>
 
                 {{-- Action Button --}}
-                <a href="/buka-peran" class="block text-center bg-btn-bg text-[#21140A] rounded-[18px] py-3 md:py-4 px-6 text-[20px] md:text-[24px] font-light w-full hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mt-4">
+                <button type="submit" class="block text-center bg-btn-bg text-[#21140A] rounded-[18px] py-3 md:py-4 px-6 text-[20px] md:text-[24px] font-light w-full hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mt-4">
                     Lanjutkan Permainan
-                </a>
+                </button>
                 
-            </div>
+            </form>
         </div>
     </div>
     <script>
