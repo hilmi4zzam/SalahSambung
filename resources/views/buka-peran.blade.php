@@ -117,7 +117,7 @@
 
             {{-- Right Side --}}
             <div class="flex flex-col items-center sm:items-end">
-                <p id="popup-instruction" class="text-bg-dark text-[16px] md:text-[18px] mb-2 font-medium">putar device ke pemain selanjutnya</p>
+                <p id="popup-instruction" class="text-bg-dark text-[16px] md:text-[18px] mb-2 font-medium">tak modifkiasi di js nya</p>
                 <button id="btn-lanjut" onclick="nextPlayer()" class="bg-white text-bg-dark rounded-full py-2 px-12 md:py-3 md:px-16 text-[20px] md:text-[24px] font-bold hover:bg-gray-100 transition-colors w-full sm:w-auto shadow-md">
                     Lanjut
                 </button>
@@ -166,7 +166,7 @@
                 document.getElementById('player-title').innerText = 'PEMAIN ' + currentPlayer;
             } else {
                 // Semua pemain sudah melihat peran, arahkan ke game (dashboard/dll)
-                window.location.href = '/dashboard';
+                window.location.href = '/voting';
             }
         }
     </script>

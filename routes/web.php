@@ -26,6 +26,9 @@ Route::get('/buka-peran', function (\Illuminate\Http\Request $request) {
     ]);
 });
 
+Route::get('/voting', function () {
+    return view('voting');
+});
 
 // 1. GET: Nampilin form HTML register, login
 
