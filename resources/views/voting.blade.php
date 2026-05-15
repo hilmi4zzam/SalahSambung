@@ -62,7 +62,7 @@
             <div class="w-full max-w-[700px] lg:max-w-[800px] mx-auto flex flex-wrap justify-center gap-4 md:gap-5 mb-10 md:mb-12">
                 
                 @for ($i = 1; $i <= ($jumlah_pemain ?? 3); $i++)
-                    <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#8c8b89] bg-transparent hover:bg-[#8c8b89]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:border-[#ff0000]">
+                    <button id="player-btn-{{ $i }}" onclick="selectPlayer({{ $i }})" class="player-btn w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[2px] border-[#8c8b89] bg-transparent hover:bg-[#8c8b89]/10 transition-colors flex items-center justify-center group focus:outline-none">
                         <span class="font-light text-[20px] md:text-[24px] text-white mt-1">Pemain {{ $i }}</span>
                     </button>
                 @endfor
@@ -70,12 +70,111 @@
             </div>
 
             {{-- Voting Button --}}
-            <button class="w-full max-w-[700px] lg:max-w-[800px] mx-auto h-[55px] md:h-[65px] rounded-[16px] md:rounded-[20px] bg-[#C7B09C] hover:bg-[#d4bfad] transition-colors flex items-center justify-center group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C7B09C]/50">
+            <button onclick="processVote()" class="w-full max-w-[700px] lg:max-w-[800px] mx-auto h-[55px] md:h-[65px] rounded-[16px] md:rounded-[20px] bg-[#C7B09C] hover:bg-[#d4bfad] transition-colors flex items-center justify-center group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C7B09C]/50">
                 <span class="font-light text-[22px] md:text-[26px] text-[#21201D] mt-1 group-hover:scale-105 transition-transform">Voting</span>
             </button>
 
         </div>
     </div>
+
+    {{-- Popups --}}
+    {{-- Not Impostor Popup --}}
+    <div id="not-impostor-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-6 md:p-8 max-w-[400px] w-full text-center flex flex-col items-center">
+            <h2 id="not-impostor-text" class="text-[28px] md:text-[32px] text-white mb-6 leading-tight">Pemain X bukan impostor</h2>
+            <button onclick="closeNotImpostor()" class="bg-[#C7B09C] text-[#21201D] text-[20px] rounded-[16px] px-8 py-2 hover:bg-[#d4bfad] transition-colors w-full">Lanjut</button>
+        </div>
+    </div>
+
+    {{-- Impostor Popup --}}
+    <div id="impostor-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-6 md:p-8 max-w-[400px] w-full text-center flex flex-col items-center">
+            <h2 id="impostor-text" class="text-[28px] md:text-[32px] text-[#E61612] mb-2 leading-tight">Pemain X adalah Impostor!</h2>
+            <p class="text-[18px] text-white/80 mb-6 font-light">Tebak kata dari Villager</p>
+            <input type="text" id="guess-input" placeholder="Masukkan tebakan..." class="w-full bg-transparent border-b-[2px] border-[#C7B09C] text-center text-[24px] md:text-[28px] text-white focus:outline-none mb-8 pb-2 placeholder-white/30">
+            <button onclick="checkGuess()" class="bg-[#E61612] text-white text-[20px] rounded-[16px] px-8 py-2 hover:bg-red-700 transition-colors w-full">Tebak</button>
+        </div>
+    </div>
+
+    {{-- Result Popup --}}
+    <div id="result-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md px-4">
+        <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-8 md:p-10 max-w-[500px] w-full text-center flex flex-col items-center">
+            <h1 id="result-title" class="text-[40px] md:text-[50px] mb-2 leading-none text-[#FFB200]">Pemenang</h1>
+            <p id="result-desc" class="text-[20px] md:text-[24px] text-white mb-8 font-light">Kata yang benar adalah ...</p>
+            <a href="/dashboard" class="bg-[#FFB200] text-[#150D05] text-[22px] rounded-[16px] px-8 py-3 hover:bg-yellow-400 transition-colors w-full inline-block">Selesai</a>
+        </div>
+    </div>
+
+    <script>
+        const roles = JSON.parse(sessionStorage.getItem('gameRoles') || '[]');
+        const wordVillager = sessionStorage.getItem('wordVillager') || '';
+
+        let selectedPlayer = null;
+
+        function selectPlayer(index) {
+            selectedPlayer = index;
+            // Update ui select button
+            document.querySelectorAll('.player-btn').forEach((btn) => {
+                btn.classList.remove('border-[#FFB200]', 'ring-1', 'ring-[#FFB200]/50');
+                btn.classList.add('border-[#8c8b89]');
+            });
+            const activeBtn = document.getElementById('player-btn-' + index);
+            if(activeBtn) {
+                activeBtn.classList.remove('border-[#8c8b89]');
+                activeBtn.classList.add('border-[#FFB200]', 'ring-1', 'ring-[#FFB200]/50');
+            }
+        }
+
+        function processVote() {
+            if (!selectedPlayer) {
+                alert('Pilih pemain terlebih dahulu!');
+                return;
+            }
+
+            const role = roles[selectedPlayer - 1];
+
+            if (role === 'IMPOSTOR') {
+                document.getElementById('impostor-text').innerText = 'Pemain ' + selectedPlayer + ' adalah Impostor!';
+                document.getElementById('impostor-popup').classList.replace('hidden', 'flex');
+            } else {
+                document.getElementById('not-impostor-text').innerText = 'Pemain ' + selectedPlayer + ' BUKAN Impostor';
+                document.getElementById('not-impostor-popup').classList.replace('hidden', 'flex');
+            }
+        }
+
+        function closeNotImpostor() {
+            document.getElementById('not-impostor-popup').classList.replace('flex', 'hidden');
+            // Remove the selected player from view
+            const btn = document.getElementById('player-btn-' + selectedPlayer);
+            if (btn) btn.style.display = 'none';
+            selectedPlayer = null;
+        }
+
+        function checkGuess() {
+            const guess = document.getElementById('guess-input').value.trim().toLowerCase();
+            const actualWord = wordVillager.toLowerCase();
+
+            document.getElementById('impostor-popup').classList.replace('flex', 'hidden');
+
+            const resultPopup = document.getElementById('result-popup');
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+
+            if (guess === actualWord) {
+                resultTitle.innerText = 'Impostor Menang!';
+                resultTitle.classList.replace('text-[#FFB200]', 'text-[#E61612]');
+                resultPopup.firstElementChild.classList.replace('border-[#FFB200]', 'border-[#E61612]');
+                resultDesc.innerText = 'Tebakan kata benar: ' + wordVillager;
+            } else {
+                resultTitle.innerText = 'Villager Menang!';
+                resultTitle.classList.replace('text-[#E61612]', 'text-[#FFB200]');
+                resultPopup.firstElementChild.classList.replace('border-[#E61612]', 'border-[#FFB200]');
+                resultDesc.innerText = 'Tebakan Impostor salah. Kata yang benar adalah: ' + wordVillager;
+            }
+
+            resultPopup.classList.replace('hidden', 'flex');
+        }
+    </script>
 
 </body>
 </html>

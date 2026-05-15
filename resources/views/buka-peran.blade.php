@@ -166,6 +166,8 @@
                 document.getElementById('player-title').innerText = 'PEMAIN ' + currentPlayer;
             } else {
                 // Semua pemain sudah melihat peran, arahkan ke game (dashboard/dll)
+                sessionStorage.setItem('gameRoles', JSON.stringify(roles));
+                sessionStorage.setItem('wordVillager', wordVillager);
                 window.location.href = '/voting?jumlah_pemain=' + totalPlayers;
             }
         }
