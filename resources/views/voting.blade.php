@@ -54,7 +54,7 @@
         <div class="w-full flex-1 bg-[#150D05] rounded-t-[30px] md:rounded-t-[40px] mt-[-30px] md:mt-[-40px] relative z-20 px-5 md:px-8 pt-10 md:pt-14 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.3)] flex flex-col items-center">
             
             {{-- Subtitle --}}
-            <p class="font-light text-[18px] sm:text-[20px] md:text-[24px] text-[#ffffff] text-center mb-8 md:mb-12">
+            <p class="font-light text-[20px] md:text-[24px] md:text-[24px] text-[#ffffff] text-center mb-8 md:mb-12">
                 Ketuk salah satu pemain untuk di voting
             </p>
 
@@ -70,8 +70,8 @@
             </div>
 
             {{-- Voting Button --}}
-            <button onclick="processVote()" class="w-full max-w-[700px] lg:max-w-[800px] mx-auto h-[55px] md:h-[65px] rounded-[16px] md:rounded-[20px] bg-[#C7B09C] hover:bg-[#d4bfad] transition-colors flex items-center justify-center group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C7B09C]/50">
-                <span class="font-light text-[22px] md:text-[26px] text-[#21201D] mt-1 group-hover:scale-105 transition-transform">Voting</span>
+            <button onclick="processVote()" class="w-full max-w-[700px] lg:max-w-[800px] mx-auto h-[55px] md:h-[65px] rounded-[16px] md:rounded-[20px] bg-[#C7B09C] rounded-[16px] md:rounded-[18px] lg:rounded-[20px] py-2 md:py-2.5 lg:py-3 px-6 md:px-6 text-[20px] md:text-[24px] font-light w-[80%] hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 sm:mb-4 md:mb-3 lg:mb-4 flex items-center justify-center group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C7B09C]/50">
+                <span class="font-light text-[20px] md:text-[24px] text-[#21201D]">Voting</span>
             </button>
 
         </div>
@@ -82,26 +82,24 @@
     <div id="not-impostor-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
         <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-6 md:p-8 max-w-[400px] w-full text-center flex flex-col items-center">
             <h2 id="not-impostor-text" class="text-[28px] md:text-[32px] text-white mb-6 leading-tight">Pemain X bukan impostor</h2>
-            <button onclick="closeNotImpostor()" class="bg-[#C7B09C] text-[#21201D] text-[20px] rounded-[16px] px-8 py-2 hover:bg-[#d4bfad] transition-colors w-full">Lanjut</button>
+            <button onclick="closeNotImpostor()" class="bg-[#C7B09C] text-[#21201D] font-light text-[20px] md:text-[24px] rounded-[16px] px-8 py-2 hover:bg-[#d4bfad] transition-colors w-full">Lanjut</button>
         </div>
     </div>
 
     {{-- Impostor Popup --}}
     <div id="impostor-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
         <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-6 md:p-8 max-w-[400px] w-full text-center flex flex-col items-center">
-            <h2 id="impostor-text" class="text-[28px] md:text-[32px] text-[#E61612] mb-2 leading-tight">Pemain X adalah Impostor!</h2>
-            <p class="text-[18px] text-white/80 mb-6 font-light">Tebak kata dari Villager</p>
-            <input type="text" id="guess-input" placeholder="Masukkan tebakan..." class="w-full bg-transparent border-b-[2px] border-[#C7B09C] text-center text-[24px] md:text-[28px] text-white focus:outline-none mb-8 pb-2 placeholder-white/30">
-            <button onclick="checkGuess()" class="bg-[#E61612] text-white text-[20px] rounded-[16px] px-8 py-2 hover:bg-red-700 transition-colors w-full">Tebak</button>
+            <h2 id="impostor-text" class="text-text-[28px] md:text-[32px] text-[#ffffff] mb-2 leading-tight">Pemain X adalah Impostor!</h2>
+            <p class="text-[16px] md:text-[20px] text-white/80 mb-6 font-light">Tebak kata dari Villager</p>
+            <input type="text" id="guess-input" placeholder-light placeholder="Masukkan tebakan..." class="w-full bg-transparent border-[2px] border-[#C7B09C] text-center rounded-[16px] text-[20px] text-white mb-8 pb-1 pt-1 placeholder-white/30">
+            <button onclick="checkGuess()" class="bg-[#C7B09C] text-[#21201D] font-light text-[20px] md:text-[24px] rounded-[16px] px-8 py-2 hover:bg-[#d4bfad] transition-colors w-full">Tebak</button>
         </div>
     </div>
 
-    {{-- Result Popup --}}
-    <div id="result-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md px-4">
-        <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-8 md:p-10 max-w-[500px] w-full text-center flex flex-col items-center">
-            <h1 id="result-title" class="text-[40px] md:text-[50px] mb-2 leading-none text-[#FFB200]">Pemenang</h1>
-            <p id="result-desc" class="text-[20px] md:text-[24px] text-white mb-8 font-light">Kata yang benar adalah ...</p>
-            <a href="/dashboard" class="bg-[#FFB200] text-[#150D05] text-[22px] rounded-[16px] px-8 py-3 hover:bg-yellow-400 transition-colors w-full inline-block">Selesai</a>
+    <div id="result-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div class="bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat p-6 md:p-8 max-w-[400px] w-full text-center flex flex-col items-center">
+            <h2 id="result-title" class="text-[28px] md:text-[32px] text-white mb-6 leading-tight">Pemenang</h2>
+            <a href="/dashboard" class="bg-[#C7B09C] text-[#21201D] font-light text-[20px] md:text-[24px] rounded-[16px] px-8 py-2 hover:bg-[#d4bfad] transition-colors w-full">Selesai</a>
         </div>
     </div>
 
@@ -147,6 +145,26 @@
             // Remove the selected player from view
             const btn = document.getElementById('player-btn-' + selectedPlayer);
             if (btn) btn.style.display = 'none';
+
+            // Mark player as eliminated so we can count remaining
+            roles[selectedPlayer - 1] = 'ELIMINATED';
+            
+            let remainingVillagers = roles.filter(role => role === 'VILLAGER').length;
+            let remainingImpostors = roles.filter(role => role === 'IMPOSTOR').length;
+
+            if (remainingImpostors >= remainingVillagers) {
+                const resultPopup = document.getElementById('result-popup');
+                const resultTitle = document.getElementById('result-title');
+                const resultDesc = document.getElementById('result-desc');
+
+                resultTitle.innerText = 'Impostor Menang!';
+                resultTitle.classList.remove('text-[#ffffff]');
+                resultTitle.classList.add('text-[#ffffff]');
+                resultPopup.firstElementChild.classList.remove('border-[#FFB200]');
+                
+                resultPopup.classList.replace('hidden', 'flex');
+            }
+
             selectedPlayer = null;
         }
 
@@ -162,14 +180,16 @@
 
             if (guess === actualWord) {
                 resultTitle.innerText = 'Impostor Menang!';
-                resultTitle.classList.replace('text-[#FFB200]', 'text-[#E61612]');
-                resultPopup.firstElementChild.classList.replace('border-[#FFB200]', 'border-[#E61612]');
-                resultDesc.innerText = 'Tebakan kata benar: ' + wordVillager;
+                resultTitle.classList.remove('text-[#ffffff]');
+                resultTitle.classList.add('text-[#ffffff]');
+                resultPopup.firstElementChild.classList.remove('border-[#FFB200]');
+                resultPopup.firstElementChild.classList.add('border-[#E61612]');
             } else {
                 resultTitle.innerText = 'Villager Menang!';
-                resultTitle.classList.replace('text-[#E61612]', 'text-[#FFB200]');
-                resultPopup.firstElementChild.classList.replace('border-[#E61612]', 'border-[#FFB200]');
-                resultDesc.innerText = 'Tebakan Impostor salah. Kata yang benar adalah: ' + wordVillager;
+                resultTitle.classList.remove('text-[#ffffff]');
+                resultTitle.classList.add('text-[#ffffff]');
+                resultPopup.firstElementChild.classList.remove('border-[#E61612]');
+                resultPopup.firstElementChild.classList.add('border-[#FFB200]');
             }
 
             resultPopup.classList.replace('hidden', 'flex');
