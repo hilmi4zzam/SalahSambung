@@ -54,37 +54,18 @@
         <div class="w-full flex-1 bg-[#150D05] rounded-t-[30px] md:rounded-t-[40px] mt-[-30px] md:mt-[-40px] relative z-20 px-5 md:px-8 pt-10 md:pt-14 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.3)] flex flex-col items-center">
             
             {{-- Subtitle --}}
-            <p class="font-light text-[18px] sm:text-[20px] md:text-[24px] text-[#BDBDBC] text-center mb-8 md:mb-12">
+            <p class="font-light text-[18px] sm:text-[20px] md:text-[24px] text-[#ffffff] text-center mb-8 md:mb-12">
                 Ketuk salah satu pemain untuk di voting
             </p>
 
             {{-- Player Grid --}}
             <div class="w-full max-w-[700px] lg:max-w-[800px] mx-auto flex flex-wrap justify-center gap-4 md:gap-5 mb-10 md:mb-12">
                 
-                {{-- Pemain 1 --}}
-                <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#E61612] bg-transparent hover:bg-[#E61612]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-[#E61612]/50">
-                    <span class="font-light text-[20px] md:text-[24px] text-white mt-1 group-hover:scale-105 transition-transform">Pemain 1</span>
-                </button>
-
-                {{-- Pemain 2 --}}
-                <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#C26910] bg-transparent hover:bg-[#C26910]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-[#C26910]/50">
-                    <span class="font-light text-[20px] md:text-[24px] text-white mt-1 group-hover:scale-105 transition-transform">Pemain 2</span>
-                </button>
-
-                {{-- Pemain 3 --}}
-                <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#FFB200] bg-transparent hover:bg-[#FFB200]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-[#FFB200]/50">
-                    <span class="font-light text-[20px] md:text-[24px] text-white mt-1 group-hover:scale-105 transition-transform">Pemain 3</span>
-                </button>
-
-                {{-- Pemain 4 --}}
-                <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#01690F] bg-transparent hover:bg-[#01690F]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-[#01690F]/50">
-                    <span class="font-light text-[20px] md:text-[24px] text-white mt-1 group-hover:scale-105 transition-transform">Pemain 4</span>
-                </button>
-
-                {{-- Pemain 5 --}}
-                <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#127CE6] bg-transparent hover:bg-[#127CE6]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-[#127CE6]/50">
-                    <span class="font-light text-[20px] md:text-[24px] text-white mt-1 group-hover:scale-105 transition-transform">Pemain 5</span>
-                </button>
+                @for ($i = 1; $i <= ($jumlah_pemain ?? 3); $i++)
+                    <button class="w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[3px] border-[#8c8b89] bg-transparent hover:bg-[#8c8b89]/10 transition-colors flex items-center justify-center group focus:outline-none focus:ring-2 focus:border-[#ff0000]">
+                        <span class="font-light text-[20px] md:text-[24px] text-white mt-1">Pemain {{ $i }}</span>
+                    </button>
+                @endfor
 
             </div>
 
