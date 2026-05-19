@@ -110,111 +110,49 @@
             class="w-full max-w-[700px] pt-25 px-6 md:px-12 pb-16 relative z-10 mt-auto mb-[-60px] bg-[url('/images/dashboard_illustration.png')] bg-[length:100%_100%] bg-top bg-no-repeat min-h-[530px]">
             
             <div class="space-y-5 md:space-y-8 mt-20">
-                {{-- History Item: Villager --}}
-                <div class="flex flex-col">
-                    <div
-                        class="bg-[#3D2C20] rounded-[24px] px-4 md:px-6 py-3 md:py-3.5 flex items-center justify-between mb-2">
-                        <div class="flex items-center gap-3 md:gap-12 flex-1 min-w-0">
-                            {{-- Role --}}
-                            <div class="flex items-center gap-2 md:gap-3 w-[90px] md:w-[130px] shrink-0">
-                                <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="#FFB200">
-                                    <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
-                                </svg>
-                                <span
-                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide">Villager</span>
+                @forelse ($histories ?? [] as $histori)
+                    <div class="flex flex-col">
+                        <div
+                            class="bg-[#3D2C20] rounded-[24px] px-4 md:px-6 py-3 md:py-3.5 flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-3 md:gap-12 flex-1 min-w-0">
+                                {{-- Role --}}
+                                <div class="flex items-center gap-2 md:gap-3 w-[90px] md:w-[130px] shrink-0">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="#FFB200">
+                                        <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
+                                    </svg>
+                                    <span
+                                        class="text-white text-[19px] md:text-[22px] font-light tracking-wide">{{ $histori->winner_role }}</span>
+                                </div>
+                                {{-- Object --}}
+                                <div class="flex items-center gap-2 md:gap-3 min-w-0">
+                                    <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
+                                    <span
+                                        class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">{{ $histori->word }}</span>
+                                </div>
                             </div>
-                            {{-- Object --}}
-                            <div class="flex items-center gap-2 md:gap-3 min-w-0">
-                                <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
-                                <span
-                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">Tiang
-                                    Listrik</span>
-                            </div>
+                            {{-- Delete Button --}}
+                            <form action="/history/{{ $histori->id }}" method="POST" class="ml-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="w-[30px] h-[30px] md:w-[36px] md:h-[36px] rounded-[10px] flex items-center justify-center border border-[#EF4444] bg-transparent hover:bg-[#EF4444]/10 transition-colors shrink-0">
+                                    <svg class="w-4 h-4 md:w-[18px] md:h-[18px]" viewBox="0 0 24 24" fill="none"
+                                        stroke="#EF4444" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
-                        {{-- Delete Button --}}
-                        <button
-                            class="w-[30px] h-[30px] md:w-[36px] md:h-[36px] rounded-[10px] flex items-center justify-center border border-[#EF4444] bg-transparent hover:bg-[#EF4444]/10 transition-colors shrink-0 ml-4">
-                            <svg class="w-4 h-4 md:w-[18px] md:h-[18px]" viewBox="0 0 24 24" fill="none"
-                                stroke="#EF4444" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                            </svg>
-                        </button>
+                        <div
+                            class="text-right text-[#E1C5A8] text-[10px] md:text-[13px] font-light pr-4 md:pr-6 tracking-widest mt-1">
+                            {{ $histori->created_at->format('h.i A - d / n / y') }}</div>
                     </div>
-                    <div
-                        class="text-right text-[#E1C5A8] text-[10px] md:text-[13px] font-light pr-4 md:pr-6 tracking-widest mt-1">
-                        01.47 PM - 18 / 4 / 26</div>
-                </div>
-
-                {{-- History Item: Villager --}}
-                <div class="flex flex-col">
-                    <div
-                        class="bg-[#3D2C20] rounded-[24px] px-4 md:px-6 py-3 md:py-3.5 flex items-center justify-between mb-2">
-                        <div class="flex items-center gap-3 md:gap-12 flex-1 min-w-0">
-                            {{-- Role --}}
-                            <div class="flex items-center gap-2 md:gap-3 w-[90px] md:w-[130px] shrink-0">
-                                <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="#FFB200">
-                                    <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
-                                </svg>
-                                <span
-                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide">Villager</span>
-                            </div>
-                            {{-- Object --}}
-                            <div class="flex items-center gap-2 md:gap-3 min-w-0">
-                                <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
-                                <span
-                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">Bianglala</span>
-                            </div>
-                        </div>
-                        {{-- Delete Button --}}
-                        <button
-                            class="w-[30px] h-[30px] md:w-[36px] md:h-[36px] rounded-[10px] flex items-center justify-center border border-[#EF4444] bg-transparent hover:bg-[#EF4444]/10 transition-colors shrink-0 ml-4">
-                            <svg class="w-4 h-4 md:w-[18px] md:h-[18px]" viewBox="0 0 24 24" fill="none"
-                                stroke="#EF4444" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                            </svg>
-                        </button>
+                @empty
+                    <div class="flex justify-center items-center h-[200px]">
+                        <p class="text-white text-[24px] font-light">Tidak Ada Histori Permainan</p>
                     </div>
-                    <div
-                        class="text-right text-[#E1C5A8] text-[10px] md:text-[13px] font-light pr-4 md:pr-6 tracking-widest mt-1">
-                        09.00 AM - 18 / 4 / 26</div>
-                </div>
-
-                {{-- History Item: Impostor --}}
-                <div class="flex flex-col">
-                    <div
-                        class="bg-[#3D2C20] rounded-[24px] px-4 md:px-6 py-3 md:py-3.5 flex items-center justify-between mb-2">
-                        <div class="flex items-center gap-3 md:gap-12 flex-1 min-w-0">
-                            {{-- Role --}}
-                            <div class="flex items-center gap-2 md:gap-3 w-[90px] md:w-[130px] shrink-0">
-                                <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="#FFB200">
-                                    <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
-                                </svg>
-                                <span
-                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide">Impostor</span>
-                            </div>
-                            {{-- Object --}}
-                            <div class="flex items-center gap-2 md:gap-3 min-w-0">
-                                <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
-                                <span
-                                    class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">Helm</span>
-                            </div>
-                        </div>
-                        {{-- Delete Button --}}
-                        <button
-                            class="w-[30px] h-[30px] md:w-[36px] md:h-[36px] rounded-[10px] flex items-center justify-center border border-[#EF4444] bg-transparent hover:bg-[#EF4444]/10 transition-colors shrink-0 ml-4">
-                            <svg class="w-4 h-4 md:w-[18px] md:h-[18px]" viewBox="0 0 24 24" fill="none"
-                                stroke="#EF4444" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div
-                        class="text-right text-[#E1C5A8] text-[10px] md:text-[13px] font-light pr-4 md:pr-6 tracking-widest mt-1">
-                        03.21 AM - 18 / 4 / 26</div>
-                </div>
+                @endforelse
             </div>
         </div>
     </main>

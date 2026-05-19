@@ -3,13 +3,37 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Models\WordBank;
+use App\Models\GameHistory;
 
 Route::get('/', function () {
     return view('landing');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $histories = [];
+    if (auth()->check()) {
+        $histories = GameHistory::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
+    }
+    return view('dashboard', compact('histories'));
+});
+
+Route::post('/api/history', function (\Illuminate\Http\Request $request) {
+    if (auth()->check()) {
+        GameHistory::create([
+            'user_id' => auth()->id(),
+            'winner_role' => $request->winner_role,
+            'word' => $request->word,
+        ]);
+        return response()->json(['success' => true]);
+    }
+    return response()->json(['success' => false, 'message' => 'Unauthenticated'], 401);
+});
+
+Route::delete('/history/{id}', function ($id) {
+    if (auth()->check()) {
+        GameHistory::where('user_id', auth()->id())->where('id', $id)->delete();
+    }
+    return back();
 });
 
 Route::get('/setting', function () {

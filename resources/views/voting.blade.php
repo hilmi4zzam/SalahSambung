@@ -162,10 +162,26 @@
                 resultTitle.classList.add('text-[#ffffff]');
                 resultPopup.firstElementChild.classList.remove('border-[#FFB200]');
                 
+                saveGameHistory('Impostor', wordVillager);
+
                 resultPopup.classList.replace('hidden', 'flex');
             }
 
             selectedPlayer = null;
+        }
+
+        function saveGameHistory(winner, word) {
+            fetch('/api/history', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    winner_role: winner,
+                    word: word
+                })
+            }).catch(console.error);
         }
 
         function checkGuess() {
@@ -184,12 +200,14 @@
                 resultTitle.classList.add('text-[#ffffff]');
                 resultPopup.firstElementChild.classList.remove('border-[#FFB200]');
                 resultPopup.firstElementChild.classList.add('border-[#E61612]');
+                saveGameHistory('Impostor', wordVillager);
             } else {
                 resultTitle.innerText = 'Villager Menang!';
                 resultTitle.classList.remove('text-[#ffffff]');
                 resultTitle.classList.add('text-[#ffffff]');
                 resultPopup.firstElementChild.classList.remove('border-[#E61612]');
                 resultPopup.firstElementChild.classList.add('border-[#FFB200]');
+                saveGameHistory('Villager', wordVillager);
             }
 
             resultPopup.classList.replace('hidden', 'flex');
