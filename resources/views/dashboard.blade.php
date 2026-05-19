@@ -117,17 +117,15 @@
                             <div class="flex items-center gap-3 md:gap-12 flex-1 min-w-0">
                                 {{-- Role --}}
                                 <div class="flex items-center gap-2 md:gap-3 w-[90px] md:w-[130px] shrink-0">
-                                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="#FFB200">
-                                        <path d="M2 22h20v-2H2v2zm9-4l5-9-3 3-2-6-2 6-3-3 5 9z" />
-                                    </svg>
+                                    <img src="/images/crown.png" alt="Crown" class="w-4 h-4 md:w-5 md:h-5 shrink-0">
                                     <span
                                         class="text-white text-[19px] md:text-[22px] font-light tracking-wide">{{ $histori->winner_role }}</span>
                                 </div>
                                 {{-- Object --}}
                                 <div class="flex items-center gap-2 md:gap-3 min-w-0">
-                                    <span class="text-[#FFB200] font-bold text-[18px] md:text-[24px] shrink-0">T</span>
+                                    <img src="/images/clock.png" alt="Clock" class="w-4 h-4 md:w-5 md:h-5 shrink-0">
                                     <span
-                                        class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">{{ $histori->word }}</span>
+                                        class="text-white text-[19px] md:text-[22px] font-light tracking-wide truncate">{{ $histori->created_at->format('d / n / y') }}</span>
                                 </div>
                             </div>
                             {{-- Delete Button --}}
@@ -144,9 +142,6 @@
                                 </button>
                             </form>
                         </div>
-                        <div
-                            class="text-right text-[#E1C5A8] text-[10px] md:text-[13px] font-light pr-4 md:pr-6 tracking-widest mt-1">
-                            {{ $histori->created_at->format('h.i A - d / n / y') }}</div>
                     </div>
                 @empty
                     <div class="flex justify-center items-center h-[200px]">
