@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_histories', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('winner_role');
-            $table->timestamps();
+        Schema::table('game_histories', function (Blueprint $table) {
+            $table->dropColumn('word');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_histories');
+        Schema::table('game_histories', function (Blueprint $table) {
+            $table->string('word')->nullable();
+        });
     }
 };

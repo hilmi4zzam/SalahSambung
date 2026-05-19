@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameHistory extends Model
 {
-    protected $fillable = ['user_id', 'winner_role', 'word'];
+    protected $fillable = ['user_id', 'winner_role'];
 
     public function user()
     {

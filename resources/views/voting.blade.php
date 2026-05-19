@@ -162,7 +162,7 @@
                 resultTitle.classList.add('text-[#ffffff]');
                 resultPopup.firstElementChild.classList.remove('border-[#FFB200]');
                 
-                saveGameHistory('Impostor', wordVillager);
+                saveGameHistory('Impostor');
 
                 resultPopup.classList.replace('hidden', 'flex');
             }
@@ -170,7 +170,7 @@
             selectedPlayer = null;
         }
 
-        function saveGameHistory(winner, word) {
+        function saveGameHistory(winner) {
             fetch('/api/history', {
                 method: 'POST',
                 headers: {
@@ -178,8 +178,7 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 body: JSON.stringify({
-                    winner_role: winner,
-                    word: word
+                    winner_role: winner
                 })
             }).catch(console.error);
         }
@@ -200,14 +199,14 @@
                 resultTitle.classList.add('text-[#ffffff]');
                 resultPopup.firstElementChild.classList.remove('border-[#FFB200]');
                 resultPopup.firstElementChild.classList.add('border-[#E61612]');
-                saveGameHistory('Impostor', wordVillager);
+                saveGameHistory('Impostor');
             } else {
                 resultTitle.innerText = 'Villager Menang!';
                 resultTitle.classList.remove('text-[#ffffff]');
                 resultTitle.classList.add('text-[#ffffff]');
                 resultPopup.firstElementChild.classList.remove('border-[#E61612]');
                 resultPopup.firstElementChild.classList.add('border-[#FFB200]');
-                saveGameHistory('Villager', wordVillager);
+                saveGameHistory('Villager');
             }
 
             resultPopup.classList.replace('hidden', 'flex');

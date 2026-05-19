@@ -22,7 +22,6 @@ Route::post('/api/history', function (\Illuminate\Http\Request $request) {
         GameHistory::create([
             'user_id' => auth()->id(),
             'winner_role' => $request->winner_role,
-            'word' => $request->word,
         ]);
         return response()->json(['success' => true]);
     }
