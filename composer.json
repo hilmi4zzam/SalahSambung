@@ -50,7 +50,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan migrate:fresh --seed --force"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -64,7 +65,7 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "pre-package-uninstall": [
-            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ]
     },
     "extra": {
