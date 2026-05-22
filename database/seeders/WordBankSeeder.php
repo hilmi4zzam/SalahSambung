@@ -35,7 +35,5 @@ class WordBankSeeder extends Seeder
         foreach ($chunks as $chunk) {
             WordBank::insert($chunk);
         }
-        
-        $this->command->info('WordBank berhasil di-seed dari file JSON, Bos!');
     }
 }
