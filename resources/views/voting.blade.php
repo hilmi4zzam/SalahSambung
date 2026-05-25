@@ -31,7 +31,7 @@
     <div class="w-full flex-1 flex flex-col bg-[radial-gradient(circle_at_50%_50%,rgba(67,38,19,1)_0%,rgba(39,24,12,1)_100%)]">
         
         {{-- TOP SECTION (Gradient Background) --}}
-        <div class="w-full px-5 md:px-8 pt-8 pb-16 md:pb-24 flex flex-col relative z-10">
+        <div class="w-full px-5 md:px-8 pt-8 pb-[100px] md:pb-24 flex flex-col relative z-10">
             <div class="w-full max-w-[900px] lg:max-w-[1000px] mx-auto flex flex-col items-center">
                 {{-- Back Button --}}
                 <div class="w-full flex justify-start mb-6 md:mb-8 mt-2 md:mt-0">
@@ -44,8 +44,12 @@
                 </div>
 
                 {{-- Big Title --}}
-                <h1 class="font-normal text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] leading-[1.1] text-center max-w-[700px] tracking-wide text-white">
-                    Lakukan putaran minimal sebanyak 2 kali lalu Voting
+                <h1 class="font-normal text-[52px] sm:text-[40px] md:text-[48px] lg:text-[56px] leading-[0.95] mt-4 text-center max-w-[700px] tracking-wide text-white">
+                    <span class="block sm:inline">Lakukan</span>
+                    <span class="block sm:hidden">putaran</span><span class="hidden sm:inline"> putaran</span>
+                    <span class="block sm:hidden">minimal</span><span class="hidden sm:inline"> minimal</span>
+                    <span class="block sm:hidden">sebanyak 2</span><span class="hidden sm:inline"> sebanyak 2</span>
+                    <span class="block sm:hidden">kali lalu Voting</span><span class="hidden sm:inline"> kali lalu Voting</span>
                 </h1>
             </div>
         </div>
@@ -62,7 +66,7 @@
             <div class="w-full max-w-[700px] lg:max-w-[800px] mx-auto flex flex-wrap justify-center gap-4 md:gap-5 mb-10 md:mb-12">
                 
                 @for ($i = 1; $i <= ($jumlah_pemain ?? 3); $i++)
-                    <button id="player-btn-{{ $i }}" onclick="selectPlayer({{ $i }})" class="player-btn w-full sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] md:border-[2px] border-[#8c8b89] bg-transparent hover:bg-[#8c8b89]/10 transition-colors flex items-center justify-center group focus:outline-none">
+                    <button id="player-btn-{{ $i }}" onclick="selectPlayer({{ $i }})" class="player-btn w-[calc(50%-0.5rem)] sm:w-auto min-w-[140px] max-w-[180px] md:max-w-[200px] flex-1 h-[50px] md:h-[60px] rounded-[16px] md:rounded-[18px] border-[2px] border-[#8c8b89] bg-transparent hover:bg-[#8c8b89]/10 transition-colors flex items-center justify-center group focus:outline-none">
                         <span class="font-light text-[20px] md:text-[24px] text-white mt-1">Pemain {{ $i }}</span>
                     </button>
                 @endfor
@@ -70,8 +74,8 @@
             </div>
 
             {{-- Voting Button --}}
-            <button onclick="processVote()" class="w-full max-w-[700px] lg:max-w-[800px] mx-auto h-[55px] md:h-[65px] rounded-[16px] md:rounded-[20px] bg-[#C7B09C] rounded-[16px] md:rounded-[18px] lg:rounded-[20px] py-2 md:py-2.5 lg:py-3 px-6 md:px-6 text-[20px] md:text-[24px] font-light w-[80%] hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 sm:mb-4 md:mb-3 lg:mb-4 flex items-center justify-center group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C7B09C]/50">
-                <span class="font-light text-[20px] md:text-[24px] text-[#21201D]">Voting</span>
+            <button onclick="processVote()" class="w-full sm:max-w-[700px] lg:max-w-[800px] mx-auto h-[55px] md:h-[65px] rounded-[16px] md:rounded-[20px] bg-[#C7B09C] py-2 md:py-2.5 lg:py-3 px-6 text-[20px] md:text-[24px] font-light hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer mb-2 flex items-center justify-center group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C7B09C]/50">
+                <span class="text-[#21201D]">Voting</span>
             </button>
 
         </div>

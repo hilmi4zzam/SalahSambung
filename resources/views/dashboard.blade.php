@@ -42,7 +42,7 @@
             class="w-full max-w-[800px] bg-white/10 backdrop-blur-md rounded-full h-[55px] flex items-center px-6 justify-between border border-white/5 shadow-lg">
             {{-- Left Logo --}}
             <a href="/" class="flex items-center gap-3 no-underline">
-                <div class="w-[30px] h-[30px] rounded-full bg-[#D9D9D9]"></div>
+                <img src="/images/topeng.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
                 <span class="font-light text-[22px] md:text-[24px] text-white leading-none">SalahSambung</span>
             </a>
 
@@ -158,7 +158,7 @@
             class="max-w-[1100px] mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             {{-- Brand --}}
             <div class="flex items-center gap-5">
-                <div class="w-[80px] h-[80px] rounded-full bg-[#D9D9D9] shrink-0"></div>
+                <img src="/images/topeng.png" alt="Logo" class="w-[80px] h-[80px] object-contain shrink-0">
                 <div>
                     <div class="font-normal text-[42px] md:text-[50px] text-white leading-none">SalahSambung</div>
                     <div class="font-light text-[16px] md:text-[18px] text-white/80 mt-1">Tugas Website dan Database
