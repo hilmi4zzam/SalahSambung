@@ -15,15 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('password')->nullable(); // Wajib nullable gen login google ora error
             
-            // Buat user yang daftar manual
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable(); // Wajib nullable biar login Google gak error
-            
-            // Buat user yang daftar via Google
             $table->string('google_id')->nullable(); 
             
-            $table->rememberToken();
             $table->timestamps();
         });
     }
