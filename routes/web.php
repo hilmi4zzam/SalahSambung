@@ -79,4 +79,8 @@ Route::middleware('auth')->group(function () {
             'jumlah_pemain' => $request->query('jumlah_pemain', 3)
         ]);
     });
+
+    Route::get('/main-online', function () {
+        return view('main-online');
+    });
 });

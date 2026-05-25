@@ -115,7 +115,7 @@
                 class="bg-[#C7B09C] text-[#21201D] px-8 py-2.5 rounded-[18px] text-[22px] font-light hover:opacity-90 transition-opacity w-full md:w-auto text-center">
                 Main Semeja
             </a>
-            <a href="#"
+            <a href="/main-online"
                 class="border-[2px] border-[#FFB200] bg-[#21140A] text-white px-8 py-2.5 rounded-[18px] text-[22px] font-light flex items-center justify-center gap-2 hover:bg-[#FFB200]/10 transition-colors w-full md:w-auto">
                 Main Online
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#EF4444" class="text-red-500">

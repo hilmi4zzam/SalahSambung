@@ -61,16 +61,8 @@ class AuthController extends Controller
     // 3. Fungsi buat logout dan hapus data user
     public function logout(Request $request)
     {
-        // Ambil data user yang sedang login saat ini
-        $user = Auth::user();
-
         // Lakukan proses logout
         Auth::logout();
-        
-        // Hapus data user dari database (MySQL)
-        if ($user) {
-            $user->delete();
-        }
         
         $request->session()->invalidate();
         $request->session()->regenerateToken();
