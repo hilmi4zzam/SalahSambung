@@ -48,7 +48,7 @@
       <div class="w-full max-w-[1100px] bg-white/10 backdrop-blur-md rounded-[50px] h-[55px] flex items-center px-8 border border-white/5">
         {{-- Logo --}}
         <a href="/" class="flex items-center gap-3 no-underline">
-          <img src="/images/topeng.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
+          <img src="/images/logosalahsambung.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
           <span class="font-light text-[24px] text-white leading-none">SalahSambung</span>
         </a>
         {{-- Nav links right --}}
@@ -67,7 +67,7 @@
     <nav class="flex md:hidden pt-7 px-5 relative z-10 justify-center">
       <div class="w-full bg-white/10 backdrop-blur-md rounded-full h-[50px] flex items-center px-5 relative border border-white/5">
         <a href="/" class="flex items-center gap-2 no-underline">
-          <img src="/images/topeng.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
+          <img src="/images/logosalahsambung.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
           <span class="font-light text-[20px] text-white">SalahSambung</span>
         </a>
         <div class="ml-auto flex items-center gap-3">
@@ -157,7 +157,7 @@
     <div class="max-w-[1100px] mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
       {{-- Brand --}}
       <div class="flex items-center gap-5">
-        <img src="/images/topeng.png" alt="Logo" class="w-[80px] h-[80px] object-contain shrink-0">
+        <img src="/images/logosalahsambung.png" alt="Logo" class="w-[80px] h-[80px] object-contain shrink-0">
         <div>
           <div class="font-normal text-[42px] md:text-[50px] text-white leading-none">SalahSambung</div>
           <div class="font-light text-[16px] md:text-[18px] text-white/80 mt-1">Tugas Website dan Database</div>

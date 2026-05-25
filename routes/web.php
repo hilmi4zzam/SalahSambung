@@ -35,6 +35,21 @@ Route::delete('/history/{id}', function ($id) {
     return back();
 });
 
+Route::patch('/profile/update-name', function (\Illuminate\Http\Request $request) {
+    if (auth()->check()) {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+        
+        $user = auth()->user();
+        $user->name = $request->name;
+        $user->save();
+        
+        return back()->with('success', 'Nama berhasil diperbarui.');
+    }
+    return back()->with('error', 'Gagal memperbarui nama.');
+})->name('profile.updateName');
+
 Route::get('/setting', function () {
     return view('setting');
 });

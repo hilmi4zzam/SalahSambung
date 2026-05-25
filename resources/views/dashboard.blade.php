@@ -42,7 +42,7 @@
             class="w-full max-w-[800px] bg-white/10 backdrop-blur-md rounded-full h-[55px] flex items-center px-6 justify-between border border-white/5 shadow-lg">
             {{-- Left Logo --}}
             <a href="/" class="flex items-center gap-3 no-underline">
-                <img src="/images/topeng.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
+                <img src="/images/logosalahsambung.png" alt="Logo" class="w-[30px] h-[30px] object-contain">
                 <span class="font-light text-[22px] md:text-[24px] text-white leading-none">SalahSambung</span>
             </a>
 
@@ -58,10 +58,35 @@
                     </button>
 
                     <!-- Dropdown menu -->
-                    <div id="profileDropdown" class="hidden absolute right-0 z-50 mt-3 w-56 origin-top-right rounded-[20px] bg-[#2A1C12] border border-white/10 shadow-xl focus:outline-none overflow-hidden">
+                    <div id="profileDropdown" class="hidden absolute right-0 z-50 mt-3 w-64 origin-top-right rounded-[20px] bg-[#2A1C12] border border-white/10 shadow-xl focus:outline-none overflow-hidden">
                         <div class="p-4 border-b border-white/10">
-                            <p class="text-[22px] text-white truncate leading-tight">{{ auth()->user()?->name ?? 'Pengguna' }}</p>
-                            <p class="text-[16px] text-white/50 font-light truncate">{{ auth()->user()?->email ?? 'email@kosong.com' }}</p>
+                            <!-- Toggle View Nama Lengkap -->
+                            <div id="displayNameDiv" class="flex items-center justify-between gap-2">
+                                <p class="text-[22px] text-white truncate leading-tight flex-1">{{ auth()->user()?->name ?? 'Pengguna' }}</p>
+                                <button type="button" onclick="toggleEditName()" class="text-white/50 hover:text-white transition-colors" title="Edit Nama">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <!-- Form Edit Nama -->
+                            <form action="{{ route('profile.updateName') }}" method="POST" id="editNameForm" class="hidden flex-col gap-2 mt-1">
+                                @csrf
+                                @method('PATCH')
+                                <input type="text" name="name" value="{{ auth()->user()?->name ?? 'Pengguna' }}" 
+                                    class="w-full bg-[#150D05] text-white text-[18px] px-3 py-1.5 rounded-[10px] border border-white/20 focus:outline-none focus:border-[#FFB200]" required>
+                                <div class="flex gap-2">
+                                    <button type="submit" class="bg-[#C7B09C] text-[#21201D] px-2 py-1 rounded-[8px] text-[16px] font-light mt-2 flex-1 hover:opacity-90 transition-opacity">
+                                        Simpan
+                                    </button>
+                                    <button type="button" onclick="toggleEditName()" class="bg-white/10 text-white px-2 py-1 font-light mt-2 rounded-[8px] text-[16px] font-medium flex-1 hover:bg-white/20 transition-colors">
+                                        Batal
+                                    </button>
+                                </div>
+                            </form>
+
+                            <p class="text-[16px] text-white/50 font-light truncate mt-1">{{ auth()->user()?->email ?? 'email@kosong.com' }}</p>
                         </div>
                         <div class="p-2">
                             <form action="{{ route('logout') }}" method="POST">
@@ -158,7 +183,7 @@
             class="max-w-[1100px] mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             {{-- Brand --}}
             <div class="flex items-center gap-5">
-                <img src="/images/topeng.png" alt="Logo" class="w-[80px] h-[80px] object-contain shrink-0">
+                <img src="/images/logosalahsambung.png" alt="Logo" class="w-[80px] h-[80px] object-contain shrink-0">
                 <div>
                     <div class="font-normal text-[42px] md:text-[50px] text-white leading-none">SalahSambung</div>
                     <div class="font-light text-[16px] md:text-[18px] text-white/80 mt-1">Tugas Website dan Database
@@ -198,6 +223,14 @@
         </div>
     </footer>
 
+    <script>
+        function toggleEditName() {
+            const form = document.getElementById('editNameForm');
+            const display = document.getElementById('displayNameDiv');
+            form.classList.toggle('hidden');
+            display.classList.toggle('hidden');
+        }
+    </script>
 </body>
 
 </html>

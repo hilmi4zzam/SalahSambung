@@ -25,7 +25,7 @@
     <div class="relative z-10 w-full max-w-md p-8 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl">
         <div class="flex flex-col items-center mb-8">
             <a href="/" class="flex items-center gap-3 no-underline mb-4">
-                <img src="/images/topeng.png" alt="Logo" class="w-[40px] h-[40px] object-contain">
+                <img src="/images/logosalahsambung.png" alt="Logo" class="w-[40px] h-[40px] object-contain">
                 <span class="font-light text-[28px] text-white leading-none">SalahSambung</span>
             </a>
             <h1 class="text-4xl font-normal text-center text-white">Masuk</h1>
