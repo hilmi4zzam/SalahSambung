@@ -18,7 +18,7 @@
         }
     </script>
 </head>
-<body class="bg-[#150D05] min-h-screen font-londrina text-white antialiased flex flex-col items-center justify-center relative overflow-x-hidden py-10">
+<body class="bg-[#150D05] min-h-screen font-londrina text-white antialiased flex flex-col items-center justify-center relative overflow-x-hidden py-10 px-4">
     {{-- Decorative Background --}}
     <div class="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(67,38,19,0.8)_0%,rgba(21,13,5,1)_100%)] z-0"></div>
 
