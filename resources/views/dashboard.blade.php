@@ -175,7 +175,7 @@
                     </svg>
                     WhatsApp
                 </a>
-                <a href="#"
+                <a href="https://instagram.com/hilmi4zzam" target="_blank"
                     class="flex items-center gap-3 no-underline text-white font-light text-[16px] md:text-[22px] hover:text-[#C7B09C] transition-colors">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                         <rect x="2" y="2" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"
@@ -185,7 +185,7 @@
                     </svg>
                     Instagram
                 </a>
-                <a href="#"
+                <a href="https://github.com/hilmi4zzam" target="_blank"
                     class="flex items-center gap-3 no-underline text-white font-light text-[16px] md:text-[22px] hover:text-[#C7B09C] transition-colors">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                         <path
