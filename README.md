@@ -9,10 +9,10 @@ Aplikasi ini adalah game tebak-tebakan sosial (Local Multiplayer / Pass-and-Play
 Proyek ini dibangun menggunakan modern web stack:
 - **PHP 8.3**
 - **Laravel 13.x**
-- **Laravel Socialite** (Untuk integrasi Login via Google)
+- **Laravel Socialite**
 - **Tailwind CSS 4.0**
 - **Vite**
-- **MySQL / SQLite** (Database Relasional)
+- **MySQL**
 
 ## ✨ Fitur-Fitur
 - **Autentikasi Pengguna:** Pendaftaran dan Login lokal, serta opsi masuk cepat menggunakan **Google Login**.
