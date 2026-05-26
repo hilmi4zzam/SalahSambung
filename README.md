@@ -16,6 +16,11 @@ Proyek ini dibangun menggunakan modern web stack:
 - **Vite**
 - **MySQL**
 
+## Desain & Styling (Figma)
+Untuk memudahkan perancangan antarmuka (UI/UX) dan memastikan styling yang konsisten, desain aplikasi ini dibuat dan diprototipe terlebih dahulu menggunakan **Figma** sebelum diimplementasikan ke dalam kode menggunakan Tailwind CSS.
+
+![Desain Figma](public/images/ssFigma.png)
+
 ## Fitur-Fitur
 - **Autentikasi Pengguna:** Pendaftaran dan Login lokal, serta opsi masuk cepat menggunakan **Google Login**.
 - **Pengaturan Game Fleksibel:** Bisa menentukan jumlah pemain dan jumlah impostor sesuai keinginan sebelum permainan dimulai.
