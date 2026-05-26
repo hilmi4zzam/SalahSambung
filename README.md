@@ -1,11 +1,13 @@
 # SalahSambung
 
-## 📖 Latar Belakang
+![Preview SalahSambung](public/images/previewSalahsambung.png)
+
+## Latar Belakang
 Karena adanya sebuah permasalahan dilingkungan sekitar yang pada saat itu sedang bermain who's the spy tapi kehabisan kata dan mengharuskan setiap user untuk berlangganan untuk mendapatkan kata yang baru, maka dari itu saya menghadirkan **SalahSambung**.
 
 Aplikasi ini adalah game tebak-tebakan sosial (Local Multiplayer / Pass-and-Play) di mana para pemain harus berdiskusi untuk mencari tahu siapa pemain yang memiliki peran atau kata yang berbeda dari mayoritas (Impostor/Spy).
 
-## 🚀 Teknologi yang Digunakan
+## Teknologi yang Digunakan
 Proyek ini dibangun menggunakan modern web stack:
 - **PHP 8.3**
 - **Laravel 13.x**
@@ -14,7 +16,7 @@ Proyek ini dibangun menggunakan modern web stack:
 - **Vite**
 - **MySQL**
 
-## ✨ Fitur-Fitur
+## Fitur-Fitur
 - **Autentikasi Pengguna:** Pendaftaran dan Login lokal, serta opsi masuk cepat menggunakan **Google Login**.
 - **Pengaturan Game Fleksibel:** Bisa menentukan jumlah pemain dan jumlah impostor sesuai keinginan sebelum permainan dimulai.
 - **Pembagian Peran Cerdas:** Sistem akan mengacak kata dari database (*Word Bank*) sehingga Villager mendapatkan kata asli, dan Impostor mendapatkan clue pengganti.
@@ -22,13 +24,16 @@ Proyek ini dibangun menggunakan modern web stack:
 - **Riwayat Permainan:** Mencatat setiap pertandingan dan pemenang di riwayat pada halaman Dashboard pengguna.
 - **Manajemen Profil & Riwayat:** Pengguna dapat memperbarui nama profil mereka dan menghapus catatan riwayat permainan tertentu.
 
-## 🗄️ Tabel Database
+## Tabel Database
 Berikut merupakan tabel-tabel utama yang ada di sistem ini:
 - **users**: Menyimpan data akun pengguna termasuk google_id untuk fitur OAuth.
+  ![Tabel users](public/images/Tabel%20users.png)
 - **word_banks**: Menyimpan pasangan kosa kata permainan. Berisi kolom kata_villager dan clue_impostor.
+  ![Tabel word_banks](public/images/Tabel%20word_banks.png)
 - **game_histories**: Mencatat rekam jejak permainan dengan kolom user_id (pembuat room) dan winner_role (Villager/Impostor).
+  ![Tabel game_histories](public/images/Tabel%20game_histories.png)
 
-## 🎮 Langkah-Langkah Bermain
+## Langkah-Langkah Bermain
 1. **Login & Persiapan:** Buat akun atau masuk menggunakan Google, lalu masuk ke halaman *Setting Pemain* (Main Semeja).
 2. **Atur Pemain:** Tentukan **Jumlah Pemain** (misal: 5 orang) dan **Jumlah Impostor** (misal: 1 orang) yang akan bermain.
 3. **Buka Peran (Pass-and-Play):** Serahkan perangkat/HP secara bergantian ke masing-masing pemain untuk menekan tombol **Buka Peran**.

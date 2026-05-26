@@ -6,6 +6,7 @@ use App\Models\User; // Manggil si Resepsionis (Model) dari lantai sebelah
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth; 
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -68,5 +69,43 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         
         return redirect('/');
+    }
+
+    // 4. Redirect ke Google
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    // 5. Handle Callback dari Google
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+
+            $user = User::where('google_id', $googleUser->id)->orWhere('email', $googleUser->email)->first();
+
+            if ($user) {
+                if (!$user->google_id) {
+                    $user->update([
+                        'google_id' => $googleUser->id
+                    ]);
+                }
+                Auth::login($user);
+            } else {
+                $user = User::create([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'google_id' => $googleUser->id,
+                    'password' => null
+                ]);
+                Auth::login($user);
+            }
+
+            return redirect()->intended('/dashboard');
+
+        } catch (\Exception $e) {
+            return redirect('/masuk')->withErrors(['email' => 'Gagal login menggunakan Google. Silakan coba lagi.']);
+        }
     }
 }
